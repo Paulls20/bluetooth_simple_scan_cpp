@@ -34,10 +34,13 @@ int main(int argc, char **argv)
 
     std::string addr;
     addr.resize(19);
-    std::cout << "sizeof(addr): " << addr.size() << "\n";
     std::string name;
     name.resize(250);
+
+#ifdef _DEBUG
+    std::cout << "sizeof(addr): " << addr.size() << "\n";
     std::cout << "sizeof(name): " << name.size() << "\n";
+#endif
 
     for (int i = 0; i < num_rsp; ++i)
     {
