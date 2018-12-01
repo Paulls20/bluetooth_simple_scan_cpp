@@ -1,4 +1,7 @@
 #include <cstdlib>
+#include <memory>
+#include <iostream>
+#include <cerrno>
 extern "C"
 {
 #include <unistd.h>
@@ -7,8 +10,6 @@ extern "C"
 #include <bluetooth/hci.h>
 #include <bluetooth/hci_lib.h>
 }
-#include <memory>
-#include <iostream>
 
 int main(int argc, char **argv)
 {
@@ -17,7 +18,7 @@ int main(int argc, char **argv)
 
     if (dev_id < 0 || sock < 0)
     {
-        std::cerr << "opening socket\n";
+        std::cerr << "opening socket:" << strerror(errno) << std::endl;
         std::_Exit(1);
     }
 
@@ -30,7 +31,7 @@ int main(int argc, char **argv)
 
     int num_rsp = hci_inquiry(dev_id, len, max_rsp, NULL, &ii_ptr, flags);
 
-    if (num_rsp < 0) std::cerr << "hci_inquiry\n";
+    if (num_rsp < 0) std::cerr << "hci_inquiry:" << strerror(errno) << std::endl;
 
     std::string addr;
     addr.resize(19);
