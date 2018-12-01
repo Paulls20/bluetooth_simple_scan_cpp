@@ -19,6 +19,6 @@ sudo apt-get install bluetooth libbluetooth-dev
 4. cmake ..
 5. make
 6. ./bluetooth_simple_scan
-
+```
 # Reference: 
 https://people.csail.mit.edu/albert/bluez-intro/c404.html
